@@ -14,5 +14,6 @@ namespace OsnovnaSredstva.Data
         {
         }
         public DbSet<OsnovnaSredstva.Models.Grupa> Grupa { get; set; }
+        public DbSet<OsnovnaSredstva.Models.OsnSredstvo> OsnSredstvo { get; set; }
     }
 }
