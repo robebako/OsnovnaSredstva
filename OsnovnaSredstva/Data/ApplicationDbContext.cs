@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using OsnovnaSredstva.Models;
 
 namespace OsnovnaSredstva.Data
 {
@@ -12,5 +13,6 @@ namespace OsnovnaSredstva.Data
             : base(options)
         {
         }
+        public DbSet<OsnovnaSredstva.Models.Grupa> Grupa { get; set; }
     }
 }
