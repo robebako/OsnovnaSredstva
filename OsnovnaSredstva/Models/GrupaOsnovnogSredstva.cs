@@ -11,7 +11,8 @@ namespace OsnovnaSredstva.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required, MaxLength(40)]
+        [Display(Name ="Naziv Grupe")]
         public string NazivGrupe { get; set; }
     }
 }
