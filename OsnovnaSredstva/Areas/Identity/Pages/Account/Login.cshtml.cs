@@ -44,13 +44,16 @@ namespace OsnovnaSredstva.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
+
             public string Email { get; set; }
 
             [Required]
+            [Display(Name = "Lozinka")]
+
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Zapamti me?")]
             public bool RememberMe { get; set; }
         }
 
