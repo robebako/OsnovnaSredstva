@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OsnovnaSredstva.Data;
 
 namespace OsnovnaSredstva.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210202203723_Treca")]
+    partial class Treca
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,6 +254,9 @@ namespace OsnovnaSredstva.Data.Migrations
                     b.Property<int>("InventurniBroj")
                         .HasColumnType("int");
 
+                    b.Property<double>("Kolicina")
+                        .HasColumnType("float");
+
                     b.Property<decimal>("NabavnaCijena")
                         .HasColumnType("decimal(18,2)");
 
@@ -263,9 +268,6 @@ namespace OsnovnaSredstva.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GrupaId");
-
-                    b.HasIndex("InventurniBroj")
-                        .IsUnique();
 
                     b.ToTable("OsnSredstvo");
                 });

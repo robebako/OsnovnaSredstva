@@ -1,0 +1,60 @@
+﻿@model IEnumerable<OsnovnaSredstva.Models.OsnSredstvo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Osnovna Sredstva</h1>
+
+<p>
+    <a asp-action="Create">Kreiraj novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SortiranjePoNazivu"]">@Html.DisplayNameFor(model => model.Naziv)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InventurniBroj)
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["SortiranjePoDatumuNabave"]">@Html.DisplayNameFor(model => model.DatumNabave)</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NabavnaCijena)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Grupa)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InventurniBroj)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumNabave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NabavnaCijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grupa.NazivGrupe)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Uredi</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalji</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Izbriši</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

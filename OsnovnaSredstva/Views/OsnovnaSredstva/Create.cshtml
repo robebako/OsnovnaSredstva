@@ -1,0 +1,53 @@
+﻿@model OsnovnaSredstva.Models.OsnSredstvo
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Kreiraj</h1>
+
+<h4>Osnovno sredstvo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Naziv" class="control-label"></label>
+                <input asp-for="Naziv" class="form-control" />
+                <span asp-validation-for="Naziv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InventurniBroj" class="control-label"></label>
+                <input asp-for="InventurniBroj" class="form-control" />
+                <span asp-validation-for="InventurniBroj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DatumNabave" class="control-label"></label>
+                <input asp-for="DatumNabave" class="form-control" />
+                <span asp-validation-for="DatumNabave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NabavnaCijena" class="control-label"></label>
+                <input asp-for="NabavnaCijena" class="form-control" />
+                <span asp-validation-for="NabavnaCijena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GrupaId" class="control-label"></label>
+                <select asp-for="GrupaId" class ="form-control" asp-items="ViewBag.GrupaId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

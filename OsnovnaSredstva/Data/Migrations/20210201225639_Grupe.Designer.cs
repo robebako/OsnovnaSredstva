@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OsnovnaSredstva.Data;
 
 namespace OsnovnaSredstva.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210201225639_Grupe")]
+    partial class Grupe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -227,47 +229,11 @@ namespace OsnovnaSredstva.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("NazivGrupe")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Grupa");
-                });
-
-            modelBuilder.Entity("OsnovnaSredstva.Models.OsnSredstvo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DatumNabave")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GrupaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InventurniBroj")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("NabavnaCijena")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Naziv")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GrupaId");
-
-                    b.HasIndex("InventurniBroj")
-                        .IsUnique();
-
-                    b.ToTable("OsnSredstvo");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -317,15 +283,6 @@ namespace OsnovnaSredstva.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("OsnovnaSredstva.Models.OsnSredstvo", b =>
-                {
-                    b.HasOne("OsnovnaSredstva.Models.Grupa", "Grupa")
-                        .WithMany()
-                        .HasForeignKey("GrupaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OsnovnaSredstva.Data;
 
 namespace OsnovnaSredstva.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210201233525_OsnSredstva")]
+    partial class OsnSredstva
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,8 +230,7 @@ namespace OsnovnaSredstva.Data.Migrations
 
                     b.Property<string>("NazivGrupe")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -252,20 +253,19 @@ namespace OsnovnaSredstva.Data.Migrations
                     b.Property<int>("InventurniBroj")
                         .HasColumnType("int");
 
+                    b.Property<double>("Kolicina")
+                        .HasColumnType("float");
+
                     b.Property<decimal>("NabavnaCijena")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Naziv")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GrupaId");
-
-                    b.HasIndex("InventurniBroj")
-                        .IsUnique();
 
                     b.ToTable("OsnSredstvo");
                 });
