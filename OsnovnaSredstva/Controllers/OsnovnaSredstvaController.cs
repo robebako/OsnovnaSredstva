@@ -23,10 +23,29 @@ namespace OsnovnaSredstva.Controllers
 
         // GET: OsnovnaSredstva
         [AllowAnonymous]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var applicationDbContext = _context.OsnSredstvo.Include(o => o.Grupa);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["SortiranjePoNazivu"] = String.IsNullOrEmpty(sortOrder) ? "Naziv_desc" : "";
+            ViewData["SortiranjePoDatumuNabave"] = sortOrder == "DatumNabave" ? "DatumNabave_desc" : "DatumNabave";
+
+            var osnovnaSredstva = from o in _context.OsnSredstvo
+                                  select o;
+            switch(sortOrder)
+            {
+                case "Naziv_desc":
+                    osnovnaSredstva = osnovnaSredstva.OrderByDescending(o => o.Naziv);
+                    break;
+                case "DatumNabave":
+                    osnovnaSredstva = osnovnaSredstva.OrderBy(o => o.DatumNabave);
+                    break;
+                case "DatumNabave_desc":
+                    osnovnaSredstva = osnovnaSredstva.OrderByDescending(o => o.DatumNabave);
+                    break;
+                default:
+                    osnovnaSredstva = osnovnaSredstva.OrderBy(o => o.Naziv);
+                    break;
+            }
+            return View(await osnovnaSredstva.AsNoTracking().ToListAsync());
         }
 
         // GET: OsnovnaSredstva/Details/5
