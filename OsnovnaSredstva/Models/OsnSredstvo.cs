@@ -21,9 +21,6 @@ namespace OsnovnaSredstva.Models
         [Display(Name ="Datum nabave"),DisplayFormat(DataFormatString ="{0:dd.MM.yyy}")]
         public DateTime DatumNabave { get; set; }
 
-        [Display(Name ="Količina")]
-        public double Kolicina { get; set; }
-
         [Display(Name ="Nabavna cijena")]
         public decimal NabavnaCijena { get; set; }
 

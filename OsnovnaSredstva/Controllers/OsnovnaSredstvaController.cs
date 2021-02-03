@@ -45,7 +45,7 @@ namespace OsnovnaSredstva.Controllers
                     osnovnaSredstva = osnovnaSredstva.OrderBy(o => o.Naziv);
                     break;
             }
-            return View(await osnovnaSredstva.AsNoTracking().ToListAsync());
+            return View(await osnovnaSredstva.Include(o=>o.Grupa).AsNoTracking().ToListAsync());
         }
 
         // GET: OsnovnaSredstva/Details/5
